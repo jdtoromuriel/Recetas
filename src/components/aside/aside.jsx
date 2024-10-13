@@ -1,27 +1,34 @@
-export default function Aside() {
-    return(
-        <div className="col-sm-4">
-            <h2>About Me</h2>
-            <h5>Photo of me:</h5>
-            <div className="fakeimg">Fake Image</div>
-            <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-            <h3 className="mt-4">Some Links</h3>
-            <p>Lorem ipsum dolor sit ame.</p>
-            <ul className="nav nav-pills flex-column">
-            <li className="nav-item">
-                <a className="nav-link active" href="#">Active</a>
+import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
+
+export default function Aside({ onCategoryChange }) {
+    const [activeCategory, setActiveCategory] = useState("Todo");
+    const navigate = useNavigate(); // Inicializar useNavigate
+
+    const handleCategoryClick = (category) => {
+        setActiveCategory(category);
+        onCategoryChange(category); // Llamar a la función de cambio de categoría
+        navigate("/"); // Redirigir a la ruta raíz
+    };
+
+    const categories = ["Todo", "Arroces", "Pastas", "Ensaladas", "Sopas", "Postres"];
+  
+    return (
+      <div className="sticky col-sm-4">
+        <h2>Categorías</h2>
+        <ul className="nav nav-pills flex-column">
+          {categories.map((category) => (
+            <li className="nav-item" key={category}>
+              <button
+                className={`nav-link ${activeCategory === category ? "active" : ""}`}
+                onClick={() => handleCategoryClick(category)} // Llamar a la función modificada
+              >
+                {category}
+              </button>
             </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link disabled" href="#">Disabled</a>
-            </li>
-            </ul>
-            <hr className="d-sm-none" />
-        </div>
-    )
+          ))}
+        </ul>
+        <hr className="d-sm-none" />
+      </div>
+    );
 }

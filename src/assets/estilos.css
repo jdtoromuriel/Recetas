@@ -4,3 +4,9 @@
 .icono-buscador{
     color: white;
 }
+
+.img-receta img {
+    width: 300px;
+    height: auto;
+    object-fit: none;
+}

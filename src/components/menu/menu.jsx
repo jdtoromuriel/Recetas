@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Menu() {
     return(
-        <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+        <nav className="sticky-top navbar navbar-expand-sm bg-dark navbar-dark">
         <div className="container">
           <ul className="navbar-nav">
             <li className="nav-item">
